@@ -6,3 +6,7 @@ With the Playground feature that display the result of an executed line, it will
 ![screenshot](screenshot.png)
 
 I use this to do TDD directly inside a Playground and then move the code as-is inside my test files.
+
+## How to install
+
+Simply add the Swift file to your Playground sources folder.
