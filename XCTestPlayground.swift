@@ -7,7 +7,7 @@ public func XCTAssert(@autoclosure expression: () -> BooleanType, _ message: Str
 }
 
 public func XCTAssertEqual<T : Equatable>(@autoclosure expression1: () -> T?, @autoclosure _ expression2: () -> T?, _ message: String = defaultMessage) -> String {
-    return returnTestResult(expression1() == expression2(), message: "message - expected: \(expression2()), actual: \(expression1())")
+    return returnTestResult(expression1() == expression2(), message: "\(message) - expected: \(expression2()), actual: \(expression1())")
 }
 
 public func XCTAssertEqual<T : Equatable>(@autoclosure expression1: () -> ArraySlice<T>, @autoclosure _ expression2: () -> ArraySlice<T>, _ message: String = defaultMessage) -> String {
@@ -31,19 +31,19 @@ public func XCTAssertFalse(@autoclosure expression: () -> BooleanType, _ message
 }
 
 public func XCTAssertGreaterThan<T : Comparable>(@autoclosure expression1: () -> T, @autoclosure _ expression2: () -> T, _ message: String = defaultMessage) -> String {
-    return returnTestResult(expression1() > expression2(), message: "\(message) - actual: \(expression1())>\(expression2())")
+    return returnTestResult(expression1() > expression2(), message: "\(message) - actual: \(expression1()) > \(expression2())")
 }
 
 public func XCTAssertGreaterThanOrEqual<T : Comparable>(@autoclosure expression1: () -> T, @autoclosure _ expression2: () -> T, _ message: String = defaultMessage) -> String {
-    return returnTestResult(expression1() >= expression2(), message: "\(message) - actual: \(expression1())>=\(expression2())")
+    return returnTestResult(expression1() >= expression2(), message: "\(message) - actual: \(expression1()) >= \(expression2())")
 }
 
 public func XCTAssertLessThan<T : Comparable>(@autoclosure expression1: () -> T, @autoclosure _ expression2: () -> T, _ message: String = defaultMessage) -> String {
-    return returnTestResult(expression1() < expression2(), message: "\(message) - actual: \(expression1())<\(expression2())")
+    return returnTestResult(expression1() < expression2(), message: "\(message) - actual: \(expression1()) < \(expression2())")
 }
 
 public func XCTAssertLessThanOrEqual<T : Comparable>(@autoclosure expression1: () -> T, @autoclosure _ expression2: () -> T, _ message: String = defaultMessage) -> String {
-    return returnTestResult(expression1() <= expression2(), message: "\(message) - actual: \(expression1())<=\(expression2())")
+    return returnTestResult(expression1() <= expression2(), message: "\(message) - actual: \(expression1()) <= \(expression2())")
 }
 
 public func XCTAssertNil(@autoclosure expression: () -> Any?, _ message: String = "") -> String {
@@ -55,23 +55,23 @@ public func XCTAssertNil(@autoclosure expression: () -> Any?, _ message: String 
 }
 
 public func XCTAssertNotEqual<T : Equatable>(@autoclosure expression1: () -> T?, @autoclosure _ expression2: () -> T?, _ message: String = defaultMessage) -> String {
-    return returnTestResult(expression1() != expression2(), message: "\(message) - expected: \(expression1())=!\(expression2())")
+    return returnTestResult(expression1() != expression2(), message: "\(message) - expected: \(expression1()) =! \(expression2())")
 }
 
 public func XCTAssertNotEqual<T : Equatable>(@autoclosure expression1: () -> ContiguousArray<T>, @autoclosure _ expression2: () -> ContiguousArray<T>, _ message: String = defaultMessage) -> String {
-    return returnTestResult(expression1() != expression2(), message: "\(message) - expected: \(expression1())!=\(expression2())")
+    return returnTestResult(expression1() != expression2(), message: "\(message) - expected: \(expression1()) != \(expression2())")
 }
 
 public func XCTAssertNotEqual<T : Equatable>(@autoclosure expression1: () -> ArraySlice<T>, @autoclosure _ expression2: () -> ArraySlice<T>, _ message: String = defaultMessage) -> String {
-    return returnTestResult(expression1() != expression2(), message: "\(message) - expected: \(expression1())!=\(expression2())")
+    return returnTestResult(expression1() != expression2(), message: "\(message) - expected: \(expression1()) != \(expression2())")
 }
 
 public func XCTAssertNotEqual<T : Equatable>(@autoclosure expression1: () -> [T], @autoclosure _ expression2: () -> [T], _ message: String = defaultMessage) -> String {
-    return returnTestResult(expression1() != expression2(), message: "\(message) - expected: \(expression1())!=\(expression2())")
+    return returnTestResult(expression1() != expression2(), message: "\(message) - expected: \(expression1()) != \(expression2())")
 }
 
 public func XCTAssertNotEqual<T, U : Equatable>(@autoclosure expression1: () -> [T : U], @autoclosure _ expression2: () -> [T : U], _ message: String = defaultMessage) -> String {
-    return returnTestResult(expression1() != expression2(), message: "\(message) - expected: \(expression1())!=\(expression2())")
+    return returnTestResult(expression1() != expression2(), message: "\(message) - expected: \(expression1()) != \(expression2())")
 }
 
 public func XCTAssertNotNil(@autoclosure expression: () -> Any?, _ message: String = "") -> String {
