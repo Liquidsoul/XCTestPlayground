@@ -51,7 +51,7 @@ public func XCTAssertNil(@autoclosure expression: () -> Any?, _ message: String 
     if let _ = expression() {
         result = false
     }
-    return returnTestResult(result, message: "\(message) - excpected: nil, actual: \(expression())")
+    return returnTestResult(result, message: "\(message) - expected: nil, actual: \(expression())")
 }
 
 public func XCTAssertNotEqual<T : Equatable>(@autoclosure expression1: () -> T?, @autoclosure _ expression2: () -> T?, _ message: String = defaultMessage) -> String {
