@@ -104,3 +104,27 @@ func okMessage() -> String {
 func failMessage(message: String) -> String {
     return "❌" + message
 }
+
+// This class was based on GitHub gist: https://gist.github.com/croath/a9358dac0530d91e9e2b
+
+public class XCPWKTestCase: NSObject {
+    
+    public override init(){
+        super.init()
+        self.runTestMethods()
+    }
+    
+    private func runTestMethods(){
+        var mc: CUnsignedInt = 0
+        var mlist: UnsafeMutablePointer<Method> = class_copyMethodList(self.dynamicType.classForCoder(), &mc);
+        for var i: CUnsignedInt = 0; i < mc; i++ {
+            let m = method_getName(mlist.memory)
+            if i == 0 || !String(m).hasPrefix("test") {
+                mlist = mlist.successor()
+                continue
+            }
+            NSThread.detachNewThreadSelector(m, toTarget:self, withObject: nil)
+            mlist = mlist.successor()
+        }
+    }
+}
