@@ -107,11 +107,15 @@ func failMessage(message: String) -> String {
 
 // This class was based on GitHub gist: https://gist.github.com/croath/a9358dac0530d91e9e2b
 
-public class XCPWKTestCase: NSObject {
+public class XCTestCase: NSObject {
     
     public override init(){
         super.init()
         self.runTestMethods()
+    }
+
+    public func setup() {
+    
     }
     
     private func runTestMethods(){
@@ -119,12 +123,14 @@ public class XCPWKTestCase: NSObject {
         var mlist: UnsafeMutablePointer<Method> = class_copyMethodList(self.dynamicType.classForCoder(), &mc);
         for var i: CUnsignedInt = 0; i < mc; i++ {
             let m = method_getName(mlist.memory)
-            if i == 0 || !String(m).hasPrefix("test") {
-                mlist = mlist.successor()
-                continue
+            if String(m).hasPrefix("test") {
+                setup()
+                self.performSelectorOnMainThread(m, withObject: nil, waitUntilDone: true)
             }
-            NSThread.detachNewThreadSelector(m, toTarget:self, withObject: nil)
             mlist = mlist.successor()
         }
+    }
+    override public var description: String {
+        return ""
     }
 }
