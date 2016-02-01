@@ -127,8 +127,9 @@ public class XCTestCase: NSObject {
         for var i: CUnsignedInt = 0; i < mc; i++ {
             let m = method_getName(mlist.memory)
             if String(m).hasPrefix("test") {
-                setup()
+                self.setUp()
                 self.performSelectorOnMainThread(m, withObject: nil, waitUntilDone: true)
+                self.tearDown()
             }
             mlist = mlist.successor()
         }
