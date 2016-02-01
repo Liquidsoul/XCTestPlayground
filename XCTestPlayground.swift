@@ -114,11 +114,14 @@ public class XCTestCase: NSObject {
         self.runTestMethods()
     }
 
-    public func setup() {
-    
-    }
+    public class func setUp() {}
+    public func setUp() {}
+
+    public class func tearDown() {}
+    public func tearDown() {}
     
     private func runTestMethods(){
+        self.dynamicType.setUp()
         var mc: CUnsignedInt = 0
         var mlist: UnsafeMutablePointer<Method> = class_copyMethodList(self.dynamicType.classForCoder(), &mc);
         for var i: CUnsignedInt = 0; i < mc; i++ {
@@ -129,6 +132,7 @@ public class XCTestCase: NSObject {
             }
             mlist = mlist.successor()
         }
+        self.dynamicType.tearDown()
     }
     override public var description: String {
         return ""
