@@ -104,3 +104,38 @@ func okMessage() -> String {
 func failMessage(message: String) -> String {
     return "❌" + message
 }
+
+// This class was based on GitHub gist: https://gist.github.com/croath/a9358dac0530d91e9e2b
+
+public class XCTestCase: NSObject {
+    
+    public override init(){
+        super.init()
+        self.runTestMethods()
+    }
+
+    public class func setUp() {}
+    public func setUp() {}
+
+    public class func tearDown() {}
+    public func tearDown() {}
+    
+    private func runTestMethods(){
+        self.dynamicType.setUp()
+        var mc: CUnsignedInt = 0
+        var mlist: UnsafeMutablePointer<Method> = class_copyMethodList(self.dynamicType.classForCoder(), &mc);
+        for var i: CUnsignedInt = 0; i < mc; i++ {
+            let m = method_getName(mlist.memory)
+            if String(m).hasPrefix("test") {
+                self.setUp()
+                self.performSelectorOnMainThread(m, withObject: nil, waitUntilDone: true)
+                self.tearDown()
+            }
+            mlist = mlist.successor()
+        }
+        self.dynamicType.tearDown()
+    }
+    override public var description: String {
+        return ""
+    }
+}
