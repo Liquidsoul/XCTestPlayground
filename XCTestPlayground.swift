@@ -124,7 +124,7 @@ public class XCTestCase: NSObject {
         self.dynamicType.setUp()
         var mc: CUnsignedInt = 0
         var mlist: UnsafeMutablePointer<Method> = class_copyMethodList(self.dynamicType.classForCoder(), &mc);
-        for var i: CUnsignedInt = 0; i < mc; i++ {
+        (0 ..< mc).forEach {_ in 
             let m = method_getName(mlist.memory)
             if String(m).hasPrefix("test") {
                 self.setUp()
