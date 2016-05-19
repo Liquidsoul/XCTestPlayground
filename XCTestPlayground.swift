@@ -28,6 +28,7 @@ let defaultMessage = ""
 ///         XCTAssertTrue(true)
 ///     }
 /// }
+/// ```
 ///
 public func XCTAssert(
     @autoclosure expression: () -> BooleanType,
