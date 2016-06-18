@@ -31,15 +31,15 @@ let defaultMessage = ""
 /// ```
 ///
 public func XCTAssert(
-    @autoclosure expression: () -> BooleanType,
+    _ expression: @autoclosure () -> Boolean,
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(expression(), message: message)
 }
 
 public func XCTAssertEqual<T : Equatable>(
-    @autoclosure expression1: () -> T?,
-    @autoclosure _ expression2: () -> T?,
+    _ expression1: @autoclosure () -> T?,
+    _ expression2: @autoclosure () -> T?,
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(
@@ -48,8 +48,8 @@ public func XCTAssertEqual<T : Equatable>(
 }
 
 public func XCTAssertEqual<T : Equatable>(
-    @autoclosure expression1: () -> ArraySlice<T>,
-    @autoclosure _ expression2: () -> ArraySlice<T>,
+    _ expression1: @autoclosure () -> ArraySlice<T>,
+    _ expression2: @autoclosure () -> ArraySlice<T>,
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(
@@ -58,8 +58,8 @@ public func XCTAssertEqual<T : Equatable>(
 }
 
 public func XCTAssertEqual<T : Equatable>(
-    @autoclosure expression1: () -> ContiguousArray<T>,
-    @autoclosure _ expression2: () -> ContiguousArray<T>,
+    _ expression1: @autoclosure () -> ContiguousArray<T>,
+    _ expression2: @autoclosure () -> ContiguousArray<T>,
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(
@@ -68,8 +68,8 @@ public func XCTAssertEqual<T : Equatable>(
 }
 
 public func XCTAssertEqual<T : Equatable>(
-    @autoclosure expression1: () -> [T],
-    @autoclosure _ expression2: () -> [T],
+    _ expression1: @autoclosure () -> [T],
+    _ expression2: @autoclosure () -> [T],
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(
@@ -78,8 +78,8 @@ public func XCTAssertEqual<T : Equatable>(
 }
 
 public func XCTAssertEqual<T, U : Equatable>(
-    @autoclosure expression1: () -> [T : U],
-    @autoclosure _ expression2: () -> [T : U],
+    _ expression1: @autoclosure () -> [T : U],
+    _ expression2: @autoclosure () -> [T : U],
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(
@@ -88,15 +88,15 @@ public func XCTAssertEqual<T, U : Equatable>(
 }
 
 public func XCTAssertFalse(
-    @autoclosure expression: () -> BooleanType,
+    _ expression: @autoclosure () -> Boolean,
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(!expression().boolValue, message: message)
 }
 
 public func XCTAssertGreaterThan<T : Comparable>(
-    @autoclosure expression1: () -> T,
-    @autoclosure _ expression2: () -> T,
+    _ expression1: @autoclosure () -> T,
+    _ expression2: @autoclosure () -> T,
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(
@@ -105,8 +105,8 @@ public func XCTAssertGreaterThan<T : Comparable>(
 }
 
 public func XCTAssertGreaterThanOrEqual<T : Comparable>(
-    @autoclosure expression1: () -> T,
-    @autoclosure _ expression2: () -> T,
+    _ expression1: @autoclosure () -> T,
+    _ expression2: @autoclosure () -> T,
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(
@@ -115,8 +115,8 @@ public func XCTAssertGreaterThanOrEqual<T : Comparable>(
 }
 
 public func XCTAssertLessThan<T : Comparable>(
-    @autoclosure expression1: () -> T,
-    @autoclosure _ expression2: () -> T,
+    _ expression1: @autoclosure () -> T,
+    _ expression2: @autoclosure () -> T,
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(
@@ -125,8 +125,8 @@ public func XCTAssertLessThan<T : Comparable>(
 }
 
 public func XCTAssertLessThanOrEqual<T : Comparable>(
-    @autoclosure expression1: () -> T,
-    @autoclosure _ expression2: () -> T,
+    _ expression1: @autoclosure () -> T,
+    _ expression2: @autoclosure () -> T,
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(
@@ -135,7 +135,7 @@ public func XCTAssertLessThanOrEqual<T : Comparable>(
 }
 
 public func XCTAssertNil(
-    @autoclosure expression: () -> Any?,
+    _ expression: @autoclosure () -> Any?,
     _ message: String = ""
     ) -> String {
     var result = true
@@ -146,8 +146,8 @@ public func XCTAssertNil(
 }
 
 public func XCTAssertNotEqual<T : Equatable>(
-    @autoclosure expression1: () -> T?,
-    @autoclosure _ expression2: () -> T?,
+    _ expression1: @autoclosure () -> T?,
+    _ expression2: @autoclosure () -> T?,
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(
@@ -156,8 +156,8 @@ public func XCTAssertNotEqual<T : Equatable>(
 }
 
 public func XCTAssertNotEqual<T : Equatable>(
-    @autoclosure expression1: () -> ContiguousArray<T>,
-    @autoclosure _ expression2: () -> ContiguousArray<T>,
+    _ expression1: @autoclosure () -> ContiguousArray<T>,
+    _ expression2: @autoclosure () -> ContiguousArray<T>,
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(
@@ -166,8 +166,8 @@ public func XCTAssertNotEqual<T : Equatable>(
 }
 
 public func XCTAssertNotEqual<T : Equatable>(
-    @autoclosure expression1: () -> ArraySlice<T>,
-    @autoclosure _ expression2: () -> ArraySlice<T>,
+    _ expression1: @autoclosure () -> ArraySlice<T>,
+    _ expression2: @autoclosure () -> ArraySlice<T>,
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(
@@ -176,8 +176,8 @@ public func XCTAssertNotEqual<T : Equatable>(
 }
 
 public func XCTAssertNotEqual<T : Equatable>(
-    @autoclosure expression1: () -> [T],
-    @autoclosure _ expression2: () -> [T],
+    _ expression1: @autoclosure () -> [T],
+    _ expression2: @autoclosure () -> [T],
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(
@@ -186,8 +186,8 @@ public func XCTAssertNotEqual<T : Equatable>(
 }
 
 public func XCTAssertNotEqual<T, U : Equatable>(
-    @autoclosure expression1: () -> [T : U],
-    @autoclosure _ expression2: () -> [T : U],
+    _ expression1: @autoclosure () -> [T : U],
+    _ expression2: @autoclosure () -> [T : U],
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(
@@ -196,7 +196,7 @@ public func XCTAssertNotEqual<T, U : Equatable>(
 }
 
 public func XCTAssertNotNil(
-    @autoclosure expression: () -> Any?,
+    _ expression: @autoclosure () -> Any?,
     _ message: String = ""
     ) -> String {
     var result = false
@@ -205,23 +205,23 @@ public func XCTAssertNotNil(
 }
 
 public func XCTAssertTrue(
-    @autoclosure expression: () -> BooleanType,
+    _ expression: @autoclosure () -> Boolean,
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(expression(), message: message)
 }
 
-public func XCTFail(message: String = "") -> String {
+public func XCTFail(_ message: String = "") -> String {
     return failMessage(message)
 }
 
-func returnTestResult(result: BooleanType, message: String) -> String {
+func returnTestResult(_ result: Boolean, message: String) -> String {
     return result.boolValue ? okMessage() : failMessage(message)
 }
 
 func okMessage() -> String { return "✅" }
 
-func failMessage(message: String) -> String { return "❌" + message }
+func failMessage(_ message: String) -> String { return "❌" + message }
 
 // This class was based on GitHub gist:
 // https://gist.github.com/croath/a9358dac0530d91e9e2b
@@ -244,15 +244,15 @@ public class XCTestCase: NSObject {
     private func runTestMethods(){
         self.dynamicType.setUp()
         var mc: CUnsignedInt = 0
-        var mlist: UnsafeMutablePointer<Method> =
+        var mlist: UnsafeMutablePointer<Method?> =
             class_copyMethodList(self.dynamicType.classForCoder(), &mc);
         (0 ..< mc).forEach { _ in
-            let m = method_getName(mlist.memory)
-            if String(m).hasPrefix("test") {
+            let m = method_getName(mlist.pointee)
+            if let m = m where String(m).hasPrefix("test") {
                 self.setUp()
-                self.performSelectorOnMainThread(
-                    m,
-                    withObject: nil,
+                self.performSelector(
+                    onMainThread: m,
+                    with: nil,
                     waitUntilDone: true)
                 self.tearDown()
             }
