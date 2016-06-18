@@ -11,6 +11,6 @@ class TestCase: XCTestCase {
          XCTAssertGreaterThanOrEqual(1, 2)
          XCTAssertTrue(true)
      }
- }
+}
 
 TestCase()
