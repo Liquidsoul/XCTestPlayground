@@ -31,7 +31,7 @@ let defaultMessage = ""
 /// ```
 ///
 public func XCTAssert(
-    _ expression: @autoclosure () -> Boolean,
+    _ expression: @autoclosure () -> Bool,
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(expression(), message: message)
@@ -88,10 +88,10 @@ public func XCTAssertEqual<T, U : Equatable>(
 }
 
 public func XCTAssertFalse(
-    _ expression: @autoclosure () -> Boolean,
+    _ expression: @autoclosure () -> Bool,
     _ message: String = defaultMessage
     ) -> String {
-    return returnTestResult(!expression().boolValue, message: message)
+    return returnTestResult(!expression(), message: message)
 }
 
 public func XCTAssertGreaterThan<T : Comparable>(
@@ -205,7 +205,7 @@ public func XCTAssertNotNil(
 }
 
 public func XCTAssertTrue(
-    _ expression: @autoclosure () -> Boolean,
+    _ expression: @autoclosure () -> Bool,
     _ message: String = defaultMessage
     ) -> String {
     return returnTestResult(expression(), message: message)
@@ -215,8 +215,8 @@ public func XCTFail(_ message: String = "") -> String {
     return failMessage(message)
 }
 
-func returnTestResult(_ result: Boolean, message: String) -> String {
-    return result.boolValue ? okMessage() : failMessage(message)
+func returnTestResult(_ result: Bool, message: String) -> String {
+    return result ? okMessage() : failMessage(message)
 }
 
 func okMessage() -> String { return "✅" }
@@ -226,29 +226,29 @@ func failMessage(_ message: String) -> String { return "❌" + message }
 // This class was based on GitHub gist:
 // https://gist.github.com/croath/a9358dac0530d91e9e2b
 
-public class XCTestCase: NSObject {
+open class XCTestCase: NSObject {
     
     public override init(){
         super.init()
         self.runTestMethods()
     }
 
-    public class func setUp() {}
-    public func setUp() {}
+    open class func setUp() {}
+    open func setUp() {}
 
-    public class func tearDown() {}
-    public func tearDown() {}
+    open class func tearDown() {}
+    open func tearDown() {}
     
-    override public var description: String { return "" }
+    override open var description: String { return "" }
     
-    private func runTestMethods(){
-        self.dynamicType.setUp()
+    private func runTestMethods() {
+        type(of:self).setUp()
         var mc: CUnsignedInt = 0
         var mlist: UnsafeMutablePointer<Method?> =
-            class_copyMethodList(self.dynamicType.classForCoder(), &mc);
+            class_copyMethodList(type(of:self).classForCoder(), &mc);
         (0 ..< mc).forEach { _ in
             let m = method_getName(mlist.pointee)
-            if let m = m where String(m).hasPrefix("test") {
+            if let m = m, String(describing: m).hasPrefix("test") {
                 self.setUp()
                 self.performSelector(
                     onMainThread: m,
@@ -258,6 +258,6 @@ public class XCTestCase: NSObject {
             }
             mlist = mlist.successor()
         }
-        self.dynamicType.tearDown()
+        type(of:self).tearDown()
     }
 }
