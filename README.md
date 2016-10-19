@@ -22,8 +22,7 @@ All you have to do is:
 2. build the framework on a 64-bit target (e.g. iPhone 5s simulator)
 3. go and play in the `XCTestPlaygroundExample` playground! 🎉
 
-## Xcode 8 and Swift 3
+## Swift version
 
-Xcode 8 beta has been released and since it breaks source compatibility the changes cannot be pushed to the `master` branch _yet_.
-As a result, I have created a [`swift3`](https://github.com/Liquidsoul/XCTestPlayground/tree/swift3) branch which contains the necessary changes to support Xcode 8 with Swift 3.
-Please, checkout this branch if you intend to use `XCTestPlayground` in Xcode 8 :smiley:
+Xcode 8 has been released and since the playgrounds in this version uses swift 3 tools intended to be used inside them should use this version.
+Nevertheless, if you want to use `XCTestPlayground` with previous versions of Xcode, you can still checkout the last commit using the Swift 2.2 version: af05981c214a3a5ac1fa7b298787d517100db868
