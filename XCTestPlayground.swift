@@ -2,7 +2,7 @@
 
 import Foundation
 
-let defaultMessage = ""
+public let defaultMessage = ""
 
 /// Emits a test failure if the general `Boolean` expression passed
 /// to it evaluates to `false`.
@@ -44,7 +44,7 @@ public func XCTAssertEqual<T : Equatable>(
     ) -> String {
     return returnTestResult(
         expression1() == expression2(),
-        message: "\(message) - expected: \(expression2()), actual: \(expression1())")
+        message: "\(message) - expected: \(expression2() as Optional), actual: \(expression1() as Optional)")
 }
 
 public func XCTAssertEqual<T : Equatable>(
@@ -142,7 +142,7 @@ public func XCTAssertNil(
     if let _ = expression() { result = false }
     return returnTestResult(
         result,
-        message: "\(message) - expected: nil, actual: \(expression())")
+        message: "\(message) - expected: nil, actual: \(expression() as Optional)")
 }
 
 public func XCTAssertNotEqual<T : Equatable>(
@@ -152,7 +152,7 @@ public func XCTAssertNotEqual<T : Equatable>(
     ) -> String {
     return returnTestResult(
         expression1() != expression2(),
-        message: "\(message) - expected: \(expression1()) =! \(expression2())")
+        message: "\(message) - expected: \(expression1() as Optional) =! \(expression2() as Optional)")
 }
 
 public func XCTAssertNotEqual<T : Equatable>(
@@ -243,12 +243,17 @@ open class XCTestCase: NSObject {
     
     private func runTestMethods() {
         type(of:self).setUp()
+        defer {
+            type(of:self).tearDown()
+        }
         var mc: CUnsignedInt = 0
-        var mlist: UnsafeMutablePointer<Method?> =
-            class_copyMethodList(type(of:self).classForCoder(), &mc);
+        
+        guard var mlist = class_copyMethodList(type(of:self).classForCoder(), &mc) else {
+            return
+        }
         (0 ..< mc).forEach { _ in
             let m = method_getName(mlist.pointee)
-            if let m = m, String(describing: m).hasPrefix("test") {
+            if String(describing: m).hasPrefix("test") {
                 self.setUp()
                 self.performSelector(
                     onMainThread: m,
@@ -258,6 +263,5 @@ open class XCTestCase: NSObject {
             }
             mlist = mlist.successor()
         }
-        type(of:self).tearDown()
     }
 }

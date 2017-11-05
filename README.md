@@ -24,5 +24,5 @@ All you have to do is:
 
 ## Swift version
 
-Xcode 8 has been released and since the playgrounds in this version uses swift 3 tools intended to be used inside them should use this version.
+Xcode 9 has been released and since the playgrounds in this version uses swift 4 tools intended to be used inside them should use this version.  
 Nevertheless, if you want to use `XCTestPlayground` with previous versions of Xcode, you can still checkout the last commit using the Swift 2.2 version: af05981c214a3a5ac1fa7b298787d517100db868
